@@ -4,11 +4,11 @@ COPY backend/pom.xml .
 COPY backend/src ./src
 RUN mvn clean package -DskipTests
 
-FROM node:18 AS frontend-build
+FROM node:18-alpine AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package.json .
 COPY frontend/package-lock.json .
-RUN npm install
+RUN npm install --prefer-offline --no-audit
 COPY frontend .
 RUN npm run build
 
