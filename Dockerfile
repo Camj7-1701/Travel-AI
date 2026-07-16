@@ -15,8 +15,8 @@ RUN npm run build
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 RUN mkdir -p data uploads
-COPY --from=backend-build /app/backend/target/ ./target/
-RUN cp target/*.jar travel-ai.jar && ls -la
+COPY --from=backend-build /app/backend/target/travel-ai-1.0.0.jar ./travel-ai.jar
 COPY --from=frontend-build /app/frontend/dist ./static
+RUN ls -la travel-ai.jar || echo "jar not found"
 EXPOSE 8080
 CMD ["java", "-jar", "travel-ai.jar"]
