@@ -2,7 +2,7 @@ FROM maven:3.9-eclipse-temurin-21 AS backend-build
 WORKDIR /app/backend
 COPY backend/pom.xml .
 COPY backend/src ./src
-RUN mvn clean package -DskipTests && ls -la target/
+RUN mvn clean package -DskipTests
 
 FROM node:18-alpine AS frontend-build
 WORKDIR /app/frontend
@@ -15,8 +15,8 @@ RUN npm run build
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 RUN mkdir -p data uploads
-COPY --from=backend-build /app/backend/target/travel-ai-*.jar ./travel-ai.jar
+COPY --from=backend-build /app/backend/target/ ./target/
+RUN cp target/*.jar travel-ai.jar && ls -la
 COPY --from=frontend-build /app/frontend/dist ./static
-RUN ls -la
 EXPOSE 8080
 CMD ["java", "-jar", "travel-ai.jar"]
