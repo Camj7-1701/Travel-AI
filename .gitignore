@@ -15,3 +15,4 @@ uploads/
 *.swp
 *.swo
 data/
+BUILD_TIMESTAMP
