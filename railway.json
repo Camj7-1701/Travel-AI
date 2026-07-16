@@ -1,10 +1,10 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "command": "cd frontend && npm install && npm run build && mkdir -p ../backend/src/main/resources/static && cp -r dist/* ../backend/src/main/resources/static/ && cd ../backend && mvn clean package -DskipTests"
+    "dockerfilePath": "Dockerfile"
   },
   "deploy": {
-    "startCommand": "mkdir -p data && java -jar backend/target/travel-ai-1.0.0.jar",
+    "startCommand": "java -jar travel-ai-1.0.0.jar",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   },
