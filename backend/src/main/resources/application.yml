@@ -1,9 +1,9 @@
 server:
-  port: ${PORT:8080}
+  port: 8080
 
 spring:
   datasource:
-    url: ${DB_URL:jdbc:sqlite:./data/travel_ai.db}
+    url: jdbc:sqlite:./data/travel_ai.db
     driver-class-name: org.sqlite.JDBC
   servlet:
     multipart:
@@ -22,15 +22,15 @@ mybatis-plus:
       id-type: auto
 
 jwt:
-  secret: ${JWT_SECRET:travel-ai-jwt-secret-key-2024-abcdefghijklmnopqrstuvwxyz0123456789}
+  secret: travel-ai-jwt-secret-key-2024-abcdefghijklmnopqrstuvwxyz0123456789
   expire: 86400000
 
 gaode:
-  web-service-key: ${GAODE_WEB_SERVICE_KEY:3718667a98e59d3f7047d8bdb146be77}
-  web-js-key: ${GAODE_WEB_JS_KEY:b72132acac6a030e44662b3c4888535}
-  web-security-key: ${GAODE_WEB_SECURITY_KEY:26d05a57e53ac6fc7bac7bc209ddbe87cf7}
+  web-service-key: 3718667a98e59d3f7047d8bdb146be77
+  web-js-key: b72132acac6a030e44662b3c4888535
+  web-security-key: 26d05a57e53ac6fc7bac7bc209ddbe87cf7
 
 ai:
-  api-key: ${AI_API_KEY:sk-25701b2b29a74ff087601a732288b623}
+  api-key: sk-25701b2b29a74ff087601a732288b623
   base-url: https://api.deepseek.com/v1/
   model: deepseek-chat

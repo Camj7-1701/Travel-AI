@@ -17,6 +17,6 @@ WORKDIR /app
 RUN mkdir -p data uploads
 COPY --from=backend-build /app/backend/target/travel-ai.jar ./travel-ai.jar
 COPY --from=frontend-build /app/frontend/dist ./static
-RUN ls -la travel-ai.jar || echo "jar not found"
+RUN ls -la && ls -la static/
 EXPOSE 8080
-CMD ["java", "-jar", "travel-ai.jar"]
+ENTRYPOINT ["java", "-jar", "travel-ai.jar"]
