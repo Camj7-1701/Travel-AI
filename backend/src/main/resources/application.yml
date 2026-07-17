@@ -26,9 +26,9 @@ jwt:
   expire: 86400000
 
 gaode:
-  web-service-key: 3718667a98e59d3f7047d8bdb146be77
-  web-js-key: b72132acac6a030e44662b3c4888535
-  web-security-key: 26d05a57e53ac6fc7bac7bc209ddbe87cf7
+  web-service-key: 2a6dc4b4911308373028dce9d15c6e1a
+  web-js-key: 2a6dc4b4911308373028dce9d15c6e1a
+  web-security-key: a1d19c59aea0b5ef04acfeb0347b3c72
 
 ai:
   api-key: sk-25701b2b29a74ff087601a732288b623

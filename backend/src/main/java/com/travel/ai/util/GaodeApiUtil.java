@@ -114,21 +114,29 @@ public class GaodeApiUtil {
         params.put("keywords", keyword);
         params.put("radius", radius);
         params.put("offset", 20);
-        String result = HttpUtil.get(url, params);
-        JSONObject json = JSON.parseObject(result);
-        if ("1".equals(json.getString("status"))) {
-            JSONArray pois = json.getJSONArray("pois");
-            List<Map<String, Object>> resultList = new ArrayList<>();
-            for (int i = 0; i < pois.size(); i++) {
-                JSONObject poi = pois.getJSONObject(i);
-                Map<String, Object> map = new HashMap<>();
-                map.put("name", poi.getString("name"));
-                map.put("address", poi.getString("address"));
-                map.put("location", poi.getString("location"));
-                map.put("type", poi.getString("type"));
-                resultList.add(map);
+        params.put("output", "json");
+        try {
+            String result = HttpUtil.get(url, params);
+            System.out.println("Gaode search result: " + result);
+            JSONObject json = JSON.parseObject(result);
+            if ("1".equals(json.getString("status"))) {
+                JSONArray pois = json.getJSONArray("pois");
+                List<Map<String, Object>> resultList = new ArrayList<>();
+                for (int i = 0; i < pois.size(); i++) {
+                    JSONObject poi = pois.getJSONObject(i);
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("name", poi.getString("name"));
+                    map.put("address", poi.getString("address"));
+                    map.put("location", poi.getString("location"));
+                    map.put("type", poi.getString("type"));
+                    resultList.add(map);
+                }
+                return resultList;
+            } else {
+                System.out.println("Gaode search error: " + json.getString("info"));
             }
-            return resultList;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

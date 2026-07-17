@@ -51,7 +51,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
-  const publicPaths = ['/login', '/register', '/', '/scenic', '/scenic/detail']
+  const publicPaths = ['/login', '/register', '/', '/scenic', '/scenic/detail', '/map']
   if (!publicPaths.includes(to.path) && !publicPaths.some(path => to.path.startsWith(path)) && !token) {
     next('/login')
   } else {
